@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import { BrowserProvider, Contract } from 'ethers';  // Correct import for ethers v6
 import { FhenixClient, EncryptionTypes, getPermit } from 'fhenixjs';
-import { JsonRpcProvider } from 'ethers';
 import contractABI from './abi/sampleAbi.json';  // Replace with the path to your ABI file
 
 // Your contract address (replace with actual deployed contract address)
@@ -61,14 +60,9 @@ function App() {
     if (contract && inputValue) {
       try {
         // Call the setValue write function on the contract
-        console.log('input value', inputValue);
-        console.log('input value type', typeof inputValue);
         const encyrptedAmount = await client.encrypt(Number(inputValue), EncryptionTypes.uint8);
-        console.log('inEuint8', encyrptedAmount);
-
         const tx = await contract.setHighestNumber(encyrptedAmount);  // Send transaction
         console.log('Transaction sent:', tx);
-
         // Wait for the transaction to be mined
         await tx.wait();  
         console.log('Transaction mined:', tx);
@@ -86,15 +80,10 @@ function App() {
         // Call read sealoutput function
         const permit = await getPermit(contractAddress, provider);
         client.storePermit(permit);
-
         const permission = client.extractPermitPermission(permit);
         const response = await contract.getSealedOutput(permission);
-
         const plaintext = client.unseal(contractAddress, response);
-
         console.log(`My Balance: ${plaintext}`)
-
-
       } catch (error) {
         console.error('Error writing to contract:', error);
       }
