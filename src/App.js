@@ -5,7 +5,9 @@ import { FhenixClient, EncryptionTypes, getPermit } from 'fhenixjs';
 import contractABI from './abi/sampleAbi.json';  // Replace with the path to your ABI file
 
 // Your contract address (replace with actual deployed contract address)
-const contractAddress = '0xFCe9Baf31Dd774ff5b35b652055b85885ED2ec08';
+//const contractAddress = '0x29E6Bbd943D17aB25039D3083A7fF314f58a1613'; //helium
+const contractAddress = '0x29E6Bbd943D17aB25039D3083A7fF314f58a1613'; //nitrogen
+
 
 function App() {
   const [account, setAccount] = useState(null);  // Account state
@@ -73,6 +75,24 @@ function App() {
       console.log('Contract not initialized or input value missing');
     }
   };
+
+  // const getSealOuput = async () => {
+  //   if (contract) {
+  //     try {
+  //       // Call read sealoutput function
+  //       const permit = await getPermit(contractAddress, provider);
+  //       client.storePermit(permit);
+  //       const permission = client.extractPermitPermission(permit);
+  //       const response = await contract.getSealedOutput(permission);
+  //       const plaintext = client.unseal(contractAddress, response);
+  //       console.log(`My Balance: ${plaintext}`)
+  //     } catch (error) {
+  //       console.error('Error writing to contract:', error);
+  //     }
+  //   } else {
+  //     console.log('Contract not initialized or input value missing');
+  //   }
+  // };
 
   const getSealOuput = async () => {
     if (contract) {
