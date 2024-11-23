@@ -104,7 +104,7 @@ function App() {
         const permission = client.extractPermitPermission(permit);
         const response = await contract.getSealedOutput(permission);
         const plaintext = client.unseal(contractAddress, response);
-        console.log(`My Balance: ${plaintext}`)
+        console.log(`SealOutput: ${plaintext}`)
       } catch (error) {
         console.error('Error writing to contract:', error);
       }
