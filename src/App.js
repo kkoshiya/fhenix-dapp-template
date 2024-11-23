@@ -6,7 +6,7 @@ import contractABI from './abi/sampleAbi.json';  // Replace with the path to you
 
 // Your contract address (replace with actual deployed contract address)
 //const contractAddress = '0x29E6Bbd943D17aB25039D3083A7fF314f58a1613'; //helium
-const contractAddress = '0x29E6Bbd943D17aB25039D3083A7fF314f58a1613'; //nitrogen
+const contractAddress = '0x16681bd5c980D094BEC816EB8152dda8EE548C54'; //nitrogen
 
 
 function App() {
@@ -63,11 +63,12 @@ function App() {
       try {
         // Call the setValue write function on the contract
         const encyrptedAmount = await client.encrypt(Number(inputValue), EncryptionTypes.uint8);
-        const tx = await contract.setHighestNumber(encyrptedAmount);  // Send transaction
-        console.log('Transaction sent:', tx);
+
+        //const tx = await contract.setHighestNumber(encyrptedAmount);  // Send transaction
+        //console.log('Transaction sent:', tx);
         // Wait for the transaction to be mined
-        await tx.wait();  
-        console.log('Transaction mined:', tx);
+        //await tx.wait();  
+        //console.log('Transaction mined:', tx);
       } catch (error) {
         console.error('Error writing to contract:', error);
       }
