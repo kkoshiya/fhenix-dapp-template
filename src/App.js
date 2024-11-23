@@ -6,7 +6,7 @@ import contractABI from './abi/sampleAbi.json';  // Replace with the path to you
 
 // Your contract address (replace with actual deployed contract address)
 //const contractAddress = '0x29E6Bbd943D17aB25039D3083A7fF314f58a1613'; //helium
-const contractAddress = '0x16681bd5c980D094BEC816EB8152dda8EE548C54'; //nitrogen
+const contractAddress = '0xd9971338616529cdFD14Fe2c06dd59CF4DF34107'; //nitrogen
 
 
 function App() {
@@ -25,9 +25,9 @@ function App() {
         const signer = await provider.getSigner(); // Get the signer
         const account = await signer.getAddress(); // Get account address as a string
         // initialize Fhenix Client
-        const client = new FhenixClient({provider});
+        //const client = new FhenixClient({provider});
         setAccount(account); // Store account address
-        setClient(client);
+        //setClient(client);
 
         // Create contract instance using ethers v6
         const contractInstance = new Contract(contractAddress, contractABI, signer);
@@ -64,11 +64,11 @@ function App() {
         // Call the setValue write function on the contract
         const encyrptedAmount = await client.encrypt(Number(inputValue), EncryptionTypes.uint8);
 
-        //const tx = await contract.setHighestNumber(encyrptedAmount);  // Send transaction
-        //console.log('Transaction sent:', tx);
-        // Wait for the transaction to be mined
-        //await tx.wait();  
-        //console.log('Transaction mined:', tx);
+        const tx = await contract.setHighestNumber(encyrptedAmount);  // Send transaction
+        console.log('Transaction sent:', tx);
+        //Wait for the transaction to be mined
+        await tx.wait();  
+        console.log('Transaction mined:', tx);
       } catch (error) {
         console.error('Error writing to contract:', error);
       }
@@ -114,6 +114,22 @@ function App() {
   };
 
 
+  const addToyPlain = async () => {
+    if (contract) {
+      try {
+        const tx = await contract.addToyPlain();  // Send transaction
+        console.log('Transaction sent:', tx);
+        //Wait for the transaction to be mined
+        await tx.wait();  
+        console.log('Transaction mined:', tx);
+      } catch (error) {
+        console.error('Error writing to contract:', error);
+      }
+    } else {
+      console.log('Contract not initialized or input value missing');
+    }
+  };
+
   return (
     <div>
       <h1>Fhenix DApp Template</h1>
@@ -133,6 +149,9 @@ function App() {
           onChange={(e) => setInputValue(e.target.value)}  // Update inputValue state
         />
         <button onClick={setCipherText}>Set Value Cipertext Value</button>
+        <div>
+          <button onClick={addToyPlain}>plain test</button>
+        </div>
       </div>
       <div>
         <button onClick={getSealOuput}>getSealOuput</button>

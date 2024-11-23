@@ -7,6 +7,11 @@
 						"internalType": "bytes",
 						"name": "data",
 						"type": "bytes"
+					},
+					{
+						"internalType": "int32",
+						"name": "securityZone",
+						"type": "int32"
 					}
 				],
 				"internalType": "struct inEuint8",
@@ -15,6 +20,13 @@
 			}
 		],
 		"name": "addCipherText",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "addToyPlain",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -59,6 +71,11 @@
 						"internalType": "bytes",
 						"name": "data",
 						"type": "bytes"
+					},
+					{
+						"internalType": "int32",
+						"name": "securityZone",
+						"type": "int32"
 					}
 				],
 				"internalType": "struct inEuint8",
@@ -79,6 +96,11 @@
 						"internalType": "bytes",
 						"name": "data",
 						"type": "bytes"
+					},
+					{
+						"internalType": "int32",
+						"name": "securityZone",
+						"type": "int32"
 					}
 				],
 				"internalType": "struct inEuint8",
@@ -186,6 +208,19 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "plainToy",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
 			}
 		],
 		"stateMutability": "view",
