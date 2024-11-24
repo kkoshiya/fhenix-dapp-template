@@ -25,9 +25,9 @@ function App() {
         const signer = await provider.getSigner(); // Get the signer
         const account = await signer.getAddress(); // Get account address as a string
         // initialize Fhenix Client
-        //const client = new FhenixClient({provider});
+        const client = new FhenixClient({provider});
         setAccount(account); // Store account address
-        //setClient(client);
+        setClient(client);
 
         // Create contract instance using ethers v6
         const contractInstance = new Contract(contractAddress, contractABI, signer);
